@@ -1,0 +1,25 @@
+name: android-fastboot
+version: 5.1
+summary: Android tool fastboot
+description: |
+  Android fastboot tool, used to manage android's bootloader
+
+grade: stable
+confinement: devmode
+
+parts:
+  android-tools:
+    source: https://github.com/ubports/android-tools.git
+    plugin: make
+    build-packages:
+      - libssl-dev
+      - libselinux-dev
+      - zlib1g-dev
+      - gcc
+apps:
+  android-fastboot:
+    command: fastboot
+    plugs:
+      - network-bind
+      - raw-usb
+#      - adb-support
